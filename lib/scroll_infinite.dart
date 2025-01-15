@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ScrollInfinite extends StatefulWidget {
   const ScrollInfinite({
-    required this.listWidget,
+    required this.children,
     required this.onEndOfPage,
     required this.isMore,
     required this.onRefresh,
@@ -20,7 +20,7 @@ class ScrollInfinite extends StatefulWidget {
   });
 
   const ScrollInfinite.onlyRefresh({
-    required this.listWidget,
+    required this.children,
     required this.onRefresh,
     super.key,
     this.scrollDown,
@@ -36,7 +36,7 @@ class ScrollInfinite extends StatefulWidget {
   })  : isMore = false,
         onEndOfPage = null;
 
-  final List<Widget> listWidget;
+  final List<Widget> children;
   final Axis axis;
 
   final void Function()? onEndOfPage;
@@ -96,7 +96,7 @@ class ScrollInfiniteState extends State<ScrollInfinite> {
     page = widget.page;
     countLoading = widget.countLoading;
     isMore = widget.isMore;
-    listWidget = widget.listWidget;
+    listWidget = widget.children;
 
     widget.controllerListener?.call(controller);
 
@@ -132,8 +132,8 @@ class ScrollInfiniteState extends State<ScrollInfinite> {
 
     if (oldWidget.loading != widget.loading) loading = widget.loading;
     if (oldWidget.isMore != widget.isMore) isMore = widget.isMore;
-    if (oldWidget.listWidget != widget.listWidget) {
-      listWidget = widget.listWidget;
+    if (oldWidget.children != widget.children) {
+      listWidget = widget.children;
     }
     if (oldWidget.page != widget.page) page = widget.page;
     if (oldWidget.countLoading != widget.countLoading) {
